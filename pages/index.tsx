@@ -3,12 +3,20 @@ import Header from './header'
 import fs from 'fs';
 import path from 'path';
 import MainPage from './Main'
+import { useState } from 'react';
 
 const Index = ({ data } : {data : []}) => {
+
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  const handleThemeChange = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+    
+  };
   return (
     <div>
-      <Header />
-      <MainPage data={data} />
+      <Header onThemeChange={handleThemeChange} theme={theme}/>
+      <MainPage data={data} theme={theme} />
     </div>
   )
 }
