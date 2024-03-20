@@ -66,11 +66,35 @@ const IndexPage = (props : {data:[]}) => {
 
   return (
     <div> 
-   <div className="flex justify-center">
+  <div className="flex justify-center">
+ 
+  <div className="block sm:hidden">
+  <div className="mx-auto max-w-screen-sm mt-10 mr-11">
+    <div className="flex justify-center text-center">
+      <LineChart
+        width={350}
+        height={180}
+        data={jsonData}
+        margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="Longitude" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="Air Temperature" name="Air Temperature" />
+      </LineChart>
+    </div>
+  </div>
+</div>
+
+
+
+<div className="hidden sm:block">
   <div className="mx-auto max-w-screen-lg">
     <LineChart
-      width={800}
-      height={300}
+      width={1000}
+      height={400}
       data={jsonData}
       margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
     >
@@ -84,10 +108,13 @@ const IndexPage = (props : {data:[]}) => {
   </div>
 </div>
 
+</div>
 
 
 
-      <div className="min-h-full  overflow-x-scroll md:mx-16 m-4  min-w-full ">
+
+
+      <div className="min-h-full  overflow-x-scroll md:mx-16    ">
      
         <div >
           <div className="min-w-full w-max  border-t border-b rounded-2xl flex ">
@@ -119,7 +146,7 @@ const IndexPage = (props : {data:[]}) => {
         </div>
          
       </div>
-      <div className="pagination-container flex items-center  justify-center  mt-2 mb-4">
+      <div className="pagination-container flex items-center  justify-center   mt-2 mb-4">
           <span className="text-gray-600 text-sm mr-2">Page number:</span>
           <ul className="pagination flex">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page: number) => (
