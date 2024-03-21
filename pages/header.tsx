@@ -1,20 +1,18 @@
 import React from 'react';
 
-interface HeaderProps {
-  onThemeChange: () => void;
-  theme : string;
-}
 
-const Header: React.FC<HeaderProps> = (props) => {
+
+const Header  = ({onThemeChange , theme}: {onThemeChange : ()=>void ,  theme:string}) => {
   return (
-    <div className="bg-gray-800 h-16 flex items-center justify-between px-4">
+    <div className="bg-gray-800 h-16 flex items-center justify-between px-4 mb-4">
       <div className="logo">
         {/* Your logo image */}
         <img src="logo.png" alt="Logo" className="h-10" />
       </div>
-      <div className="theme-button">
-        <button onClick={props.onThemeChange} className={`text-white font-bold py-2 px-4 rounded  ${props.theme === 'dark' ? 'bg-blue-500':'bg-gray-600'} `}>
-        {props.theme === 'dark' ? 'Light Mode':'Dark Mode'} 
+      <p className='text-white font-bold'>Marinal Analysis</p>
+      <div >
+        <button onClick={onThemeChange} className={`  py-2 px-4 rounded  ${theme === 'dark' ? 'bg-blue-400 text-white ':'bg-gray-300 text-black'} `}>
+        {theme === 'dark' ? 'Light':'Dark '} 
         </button>
       </div>
     </div>
