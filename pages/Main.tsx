@@ -54,11 +54,11 @@ const MainPage = ({ data, theme }: { data: [], theme: string }) => {
 
  
   return (
-    <div className={` ${theme === 'dark' ? ' text-gray' :' text-black'}`}>
+    <div className={` ${theme === 'dark' ? ' text-gray' :' text-black'}` }>
       <Graph jsonData={jsonData} theme={theme} />
     
       {/* Table */}
-      <div className="min-h-full overflow-x-scroll md:mx-16">
+      <div className="min-h-full overflow-x-scroll md:mx-16 mt-4 mx-5">
         <div>
           <div className={`min-w-full w-max border-t border-b rounded-xl flex ${theme === 'dark' ? ' text-white' : 'bg-gray-100 text-black'}`}>
             {heading.map((value: any, index: any) => (

@@ -22,59 +22,46 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
   const CustomTooltip = ({ active, payload }: { active?: boolean, payload?: any[] }) => {
     console.log(payload)
     if (active && payload && payload.length) {
-      const xKey = payload[0].name;
-      const xValue = payload[0].payload[yAxisDataKey];
-      const yKey = xAxisDataKey;
-      const yValue = payload[0].payload[xAxisDataKey];
+      const xKey = xAxisDataKey;
+      const xValue = payload[0].payload[xAxisDataKey];
+      const yKey = yAxisDataKey;
+      const yValue = payload[0].payload[yAxisDataKey];
       
       return (
         <div className="bg-white border border-gray-500 p-2 rounded-md shadow">
-          <p className="font-semibold text-black">{`${xKey}: ${xValue}`}</p>
+          
           <p className="font-semibold text-black">{`${yKey}: ${yValue}`}</p>
+          <p className="font-semibold text-black">{`${xKey}: ${xValue}`}</p>
         </div>
       );
     }
     return null;
   };
   return (
-    <div className="flex justify-between">
-      {/* Left side: Y-axis key selection */}
-      <div className="flex flex-col items-start mr-4 ml-5">
-        <p className={`mb-4 font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>Select Y-axis Parameter:</p>
-        {yAxisOptions.map((option, index) => (
-          <button
-            key={index}
-            onClick={() => handleYAxisChange(option)}
-            className={`mb-2 py-2 px-4 rounded-lg text-base  transition duration-300 ease-in-out ${
-              theme === 'dark'
-                ? `text-white ${yAxisDataKey === option ? 'bg-blue-500' : 'bg-gray-900 hover:bg-gray-700'}`
-                : `text-gray-800 ${yAxisDataKey === option ? 'bg-blue-300' : 'bg-gray-200 hover:bg-gray-300'}`
-            } focus:outline-none`}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
+    <div className="flex md:justify-between md:flex-row flex-col">
+      {/* Left side: Y-axis key selection for desktop */}
+      
 
       {/* Graph */}
       <div className="flex justify-center flex-col items-center">
-        {/* LineChart for small screens */}
-        <div className="block sm:hidden mt-10 mr-4 mb-4">
+        {/* LineChart for small screens  */}
+        <div className="block md:hidden md:mt-5  mr-4 mb-4">
           <div className="flex justify-center text-center">
             <LineChart width={360} height={200} data={jsonData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="4 4" />
               <XAxis dataKey={xAxisDataKey} />
               <YAxis />
-              <Tooltip />
+              <Tooltip content={<CustomTooltip />} />
               <Legend />
               <Line type="monotone" dataKey={yAxisDataKey} />
             </LineChart>
           </div>
         </div>
 
+
         {/* LineChart for larger screens */}
         <div className="hidden sm:block max-w-screen-lg mb-4">
-          <LineChart width={1000} height={400} data={jsonData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+          <LineChart width={1100} height={450} data={jsonData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey={xAxisDataKey} />
             <YAxis />
@@ -84,20 +71,38 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
           </LineChart>
         </div>
 
+
         {/* Variation sentence */}
-        <div className={`flex justify-center mb-4  ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
-          <p>Variation of {yAxisDataKey} with respect to {xAxisDataKey}</p>
+        <div className={`flex justify-center mb-4 md:ml-20 ml-5 mr-5 text-center text-sm   ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+        <p>Graph showing variation of {yAxisDataKey} with respect to {xAxisDataKey}</p>
         </div>
       </div>
 
-      {/* Right side: X-axis key selection */}
-      <div className="flex flex-col items-end mr-5 ml-7">
-        <p className={`mb-4 font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>Select X-axis Parameter:</p>
+      {/* Right side: X-axis key selection for desktop*/}
+    <div className='flex md:mr-5 md:gap-2 justify-center '>
+      <div className="flex flex-col items-start  ">
+        <p className={`mb-4 font-bold text-sm ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}> Y-axis Parameter:</p>
+        {yAxisOptions.map((option, index) => (
+          <button
+            key={index}
+            onClick={() => handleYAxisChange(option)}
+            className={`mb-2 py-2 px-4 rounded-lg text-sm transition duration-300 ease-in-out ${
+              theme === 'dark'
+                ? `text-white  ${yAxisDataKey === option ? 'bg-blue-500' : 'bg-gray-900 hover:bg-gray-700'}`
+                : `text-gray-800 ${yAxisDataKey === option ? 'bg-blue-300' : 'bg-gray-200 hover:bg-gray-300'}`
+            } focus:outline-none`}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+      <div className="flex flex-col items-end   ">
+        <p className={`mb-4 font-bold text-sm ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}> X-axis Parameter:</p>
         {xAxisOptions.map((option, index) => (
           <button
             key={index}
             onClick={() => handleXAxisChange(option)}
-            className={`mb-2 py-2 px-4 rounded-lg text-base  transition duration-300 ease-in-out ${
+            className={`mb-2 py-2 px-4 rounded-lg text-sm  transition duration-300 ease-in-out ${
               theme === 'dark'
                 ? `text-white ${xAxisDataKey === option ? 'bg-green-500' : 'bg-gray-900 hover:bg-gray-700'}`
                 : `text-gray-800 ${xAxisDataKey === option ? 'bg-green-300' : 'bg-gray-200 hover:bg-gray-300'}`
@@ -106,6 +111,7 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
             {option}
           </button>
         ))}
+      </div>
       </div>
     </div>
   );
