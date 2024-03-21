@@ -4,6 +4,7 @@ import React from 'react';
 
 const Header  = ({onThemeChange , theme}: {onThemeChange : ()=>void ,  theme:string}) => {
   return (
+    <div>
     <div className="bg-gray-700 h-16 flex items-center justify-between px-4 mb-4">
       <div className="logo">
         {/* Your logo image */}
@@ -15,6 +16,7 @@ const Header  = ({onThemeChange , theme}: {onThemeChange : ()=>void ,  theme:str
         {theme === 'dark' ? 'Light':'Dark '} 
         </button>
       </div>
+    </div>
     </div>
   );
 };
