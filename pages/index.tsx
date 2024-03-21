@@ -12,7 +12,7 @@ const Index = ({ data }: { data: [] }) => {
   };
 
   return (
-    <div className={`bg-${theme === 'dark' ? 'gray-800' : 'white'} text-${theme === 'dark' ? 'white' : 'black'}`}>
+    <div className={`${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
       <Header onThemeChange={handleThemeChange} theme={theme} />
       <MainPage data={data} theme={theme} />
     </div>
