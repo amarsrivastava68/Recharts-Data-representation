@@ -11,7 +11,7 @@ const Header  = ({onThemeChange , theme}: {onThemeChange : ()=>void ,  theme:str
       </div>
       <p className='text-white font-bold'>Marinal Analysis</p>
       <div >
-        <button onClick={onThemeChange} className={`  py-2 px-4 rounded  ${theme === 'dark' ? 'bg-blue-400 text-white ':'bg-gray-300 text-black'} `}>
+        <button onClick={onThemeChange} className={`  py-2 px-4 rounded  ${theme === 'dark' ? 'bg-blue-500 text-white ':'bg-gray-300 text-black'} `}>
         {theme === 'dark' ? 'Light':'Dark '} 
         </button>
       </div>
