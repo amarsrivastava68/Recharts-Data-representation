@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
-  const [xAxisDataKey, setXAxisDataKey] = useState<string>('Longitude');
+  const [xAxisDataKey, setXAxisDataKey] = useState<string>('Latitude');
   const [yAxisDataKey, setYAxisDataKey] = useState<string>('Air Temperature');
 
   // Options for X-axis and Y-axis keys
@@ -45,14 +45,14 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
       {/* Graph */}
       <div className="flex justify-center flex-col items-center">
         {/* LineChart for small screens  */}
-        <div className="block md:hidden md:mt-5  mr-4 mb-4">
+        <div className="block md:hidden md:mt-5  mr-11 mb-4">
           <div className="flex justify-center text-center">
-            <LineChart width={360} height={200} data={jsonData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+            <LineChart width={400} height={200} data={jsonData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="4 4" />
               <XAxis dataKey={xAxisDataKey} />
               <YAxis />
               <Tooltip content={<CustomTooltip />} />
-              <Legend />
+              
               <Line type="monotone" dataKey={yAxisDataKey} />
             </LineChart>
           </div>
@@ -60,21 +60,21 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
 
 
         {/* LineChart for larger screens */}
-        <div className="hidden sm:block max-w-screen-lg mb-4">
+        <div className="hidden md:block max-w-screen-lg mb-4">
           <LineChart width={1100} height={450} data={jsonData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey={xAxisDataKey} />
             <YAxis />
             <Tooltip content={<CustomTooltip />} />
-            <Legend />
+            
             <Line type="monotone" dataKey={yAxisDataKey} name={yAxisDataKey} />
           </LineChart>
         </div>
 
 
         {/* Variation sentence */}
-        <div className={`flex justify-center mb-4 md:ml-20 ml-5 mr-5 text-center text-sm   ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
-        <p>Graph showing variation of {yAxisDataKey} with respect to {xAxisDataKey}</p>
+        <div className={`flex justify-center mb-4 md:ml-20 ml-5 mr-4 text-center text-sm  md:text-base  ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+        <p>Graph showing variation of <span className='font-semibold text-blue-500'>{yAxisDataKey}</span> (y-axis) with respect to <span className='font-semibold text-blue-500'> {xAxisDataKey}</span> (x-axis)</p>
         </div>
       </div>
 
