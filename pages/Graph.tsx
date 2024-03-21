@@ -7,7 +7,7 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
 
   // Options for X-axis and Y-axis keys
   const xAxisOptions = ['Latitude', 'Longitude', 'Time of Observation'];
-  const yAxisOptions = [ 'Sea Level Pressure' , 'Wave Height' , 'Air Temperature', 'Dew Point Temperature', 'Cloud Height', 'Visibility', 'Wind Direction' ,];
+  const yAxisOptions = [ 'Sea Level Pressure' , 'Air Temperature','Wave Height' ,  'Cloud Height', 'Visibility', 'Wind Direction' , 'Dew Point Temperature'];
 
   // Function to handle change of X-axis key
   const handleXAxisChange = (option: string) => {
@@ -79,14 +79,14 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
       </div>
 
       {/* Right side: X-axis key selection for desktop*/}
-    <div className='flex md:mr-5 md:gap-2 justify-center '>
+    <div className='flex md:mr-5 md:gap-1 justify-center '>
       <div className="flex flex-col items-start  ">
         <p className={`mb-4 font-bold text-xs ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}> Y-axis Parameter:</p>
         {yAxisOptions.map((option, index) => (
           <button
             key={index}
             onClick={() => handleYAxisChange(option)}
-            className={`mb-2 py-2 px-4 rounded-lg text-sm transition duration-300 ease-in-out ${
+            className={`mb-2 py-2 px-4 rounded-lg text-xs transition duration-300 ease-in-out ${
               theme === 'dark'
                 ? `text-white  ${yAxisDataKey === option ? 'bg-blue-500' : 'bg-gray-900 hover:bg-gray-700'}`
                 : `text-gray-800 ${yAxisDataKey === option ? 'bg-blue-300' : 'bg-gray-200 hover:bg-gray-300'}`
@@ -97,7 +97,7 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
         ))}
       </div>
       <div className="flex flex-col items-end   ">
-        <p className={`mb-4 font-bold text-sm ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}> X-axis Parameter:</p>
+        <p className={`mb-4 font-bold text-xs ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}> X-axis Parameter:</p>
         {xAxisOptions.map((option, index) => (
           <button
             key={index}
