@@ -28,9 +28,9 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
       const yValue = payload[0].payload[xAxisDataKey];
       
       return (
-        <div className="bg-white border border-gray-300 p-2 rounded-md shadow">
-          <p className="font-semibold">{`${xKey}: ${xValue}`}</p>
-          <p className="font-semibold">{`${yKey}: ${yValue}`}</p>
+        <div className="bg-white border border-gray-500 p-2 rounded-md shadow">
+          <p className="font-semibold text-black">{`${xKey}: ${xValue}`}</p>
+          <p className="font-semibold text-black">{`${yKey}: ${yValue}`}</p>
         </div>
       );
     }

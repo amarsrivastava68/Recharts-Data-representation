@@ -54,13 +54,13 @@ const MainPage = ({ data, theme }: { data: [], theme: string }) => {
 
  
   return (
-    <div className={` ${theme === 'dark' ? 'bg-gray-800 text-gray' : 'bg-white text-black'}`}>
+    <div className={` ${theme === 'dark' ? ' text-gray' :' text-black'}`}>
       <Graph jsonData={jsonData} theme={theme} />
     
       {/* Table */}
       <div className="min-h-full overflow-x-scroll md:mx-16">
         <div>
-          <div className={`min-w-full w-max border-t border-b rounded-xl flex ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
+          <div className={`min-w-full w-max border-t border-b rounded-xl flex ${theme === 'dark' ? ' text-white' : 'bg-gray-100 text-black'}`}>
             {heading.map((value: any, index: any) => (
               <div className=" text-[12px] flex items-center py-[14px] px-3 text-left  font-medium w-[150px]" key={index}>
                 {value.HeadingName}
@@ -68,7 +68,7 @@ const MainPage = ({ data, theme }: { data: [], theme: string }) => {
             ))}
           </div>
         </div>
-        <div className={`min-w-full ${theme === 'dark' ? 'text-white bg-gray-800' : 'bg-white'} `}>
+        <div className={`min-w-full ${theme === 'dark' ? 'text-white ' : 'text-black'} `}>
           {currentRecords.map((data: any, index: number) => (
             <div className={`border-b flex w-max ${theme === 'dark' ? 'border-gray-600' : 'border-gray-300'} rounded-xl`} key={index}>
               {heading.map((value: any, index: any) => (
