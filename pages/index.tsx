@@ -3,6 +3,8 @@ import Header from './header';
 import fs from 'fs';
 import path from 'path';
 import MainPage from './Main';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 
 const Index = ({ data }: { data: [] }) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');

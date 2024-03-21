@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
 import Graph from './Graph';
 interface Heading {
   TableName: string;
