@@ -61,7 +61,7 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
 
         {/* LineChart for larger screens */}
         <div className="hidden md:block max-w-screen-lg mb-4">
-          <LineChart width={1100} height={450} data={jsonData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+          <LineChart width={1020} height={400} data={jsonData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey={xAxisDataKey} />
             <YAxis />
@@ -81,7 +81,7 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
       {/* Right side: X-axis key selection for desktop*/}
     <div className='flex md:mr-5 md:gap-2 justify-center '>
       <div className="flex flex-col items-start  ">
-        <p className={`mb-4 font-bold text-sm ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}> Y-axis Parameter:</p>
+        <p className={`mb-4 font-bold text-xs ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}> Y-axis Parameter:</p>
         {yAxisOptions.map((option, index) => (
           <button
             key={index}
@@ -102,7 +102,7 @@ const Graph = ({ jsonData, theme }: { jsonData: any[], theme: string }) => {
           <button
             key={index}
             onClick={() => handleXAxisChange(option)}
-            className={`mb-2 py-2 px-4 rounded-lg text-sm  transition duration-300 ease-in-out ${
+            className={`mb-2 py-2 px-4 rounded-lg text-xs  transition duration-300 ease-in-out ${
               theme === 'dark'
                 ? `text-white ${xAxisDataKey === option ? 'bg-green-500' : 'bg-gray-900 hover:bg-gray-700'}`
                 : `text-gray-800 ${xAxisDataKey === option ? 'bg-green-300' : 'bg-gray-200 hover:bg-gray-300'}`
