@@ -41,7 +41,7 @@ const Graph = ({ jsonData, theme }: { jsonData: any[]; theme: string }) => {
     active?: boolean;
     payload?: any[];
   }) => {
-    console.log(payload);
+   
     if (active && payload && payload.length) {
       const xKey = xAxisDataKey;
       const xValue = payload[0].payload[xAxisDataKey];
