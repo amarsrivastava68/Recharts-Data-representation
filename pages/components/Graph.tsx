@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Seadata } from "../lib/definitions";
+import { Seadata } from "../../lib/definitions";
 import {
   LineChart,
   Line,

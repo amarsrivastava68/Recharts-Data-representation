@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Seadata } from "./lib/definitions";
+import { Seadata } from "../lib/definitions";
 import Graph from "./components/Graph";
-import { Heading } from "./lib/definitions";
+import { Heading } from "../lib/definitions";
 
 
 const MainPage = ({ data, theme }: { data: Seadata[]; theme: string }) => {
