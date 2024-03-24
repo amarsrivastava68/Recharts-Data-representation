@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-
+import { Seadata } from "./lib/definitions";
 import Graph from "./components/Graph";
+import { Heading } from "./lib/definitions";
 
-interface Heading {
-  TableName: string;
-  HeadingName: string;
-}
 
-const MainPage = ({ data, theme }: { data: any[]; theme: string }) => {
-  const [jsonData, setJsonData] = useState<any>([]);
+const MainPage = ({ data, theme }: { data: Seadata[]; theme: string }) => {
+  const [jsonData, setJsonData] = useState<Seadata[]>([]);
 
-  const [filteredData, setFilteredData] = useState<any[]>(jsonData);
+  const [filteredData, setFilteredData] = useState<Seadata[]>(jsonData);
 
   const [heading, setHeading] = useState<Heading[]>([
     { TableName: "Identification", HeadingName: "Identification" },
@@ -52,7 +49,7 @@ const MainPage = ({ data, theme }: { data: any[]; theme: string }) => {
 
   const indexOfLastRecord: number = currentPage * recordsPerPage;
   const indexOfFirstRecord: number = indexOfLastRecord - recordsPerPage;
-  const currentRecords: any[] = filteredData?.slice(
+  const currentRecords: Seadata[] = filteredData?.slice(
     indexOfFirstRecord,
     indexOfLastRecord
   );
@@ -62,13 +59,8 @@ const MainPage = ({ data, theme }: { data: any[]; theme: string }) => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const handleApplyFilter = () => {
-    let applied = [];
     
-   
-
-    // Filter data based on the selected date range
-
-    const appliedfilterdata = jsonData.filter((entry: any) => {
+      const appliedfilterdata = jsonData.filter((entry: Seadata) => {
       const newvar = entry["Time of Observation"];
       const sd = new Date(startDate);
       const ed = new Date(endDate);
@@ -91,12 +83,12 @@ const MainPage = ({ data, theme }: { data: any[]; theme: string }) => {
   }, [data]);
 
   return (
-    <div className={` ${theme === "dark" ? " text-gray" : " text-black"}`}>
+    <div >
       
       {/* Date Range Selector */}
-      <div className="flex items-center mt-4 mx-5 md:ml-80 text-xs mb-2">
-        <label htmlFor="startDate" className="mr-2">
-          From:
+      <div className="flex items-center mt-4 mx-5 md:ml-80 text-xs mb-6 ">
+        <label htmlFor="startDate" className={ `${theme === 'dark' ? 'text-white' : 'text-black'} mr-2`}>
+          From
         </label>
         <input
           type="date"
@@ -104,10 +96,10 @@ const MainPage = ({ data, theme }: { data: any[]; theme: string }) => {
           max="2015-01-31"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          className="border border-gray-300 rounded px-2 py-1 mr-4"
+          className={`border border-gray-300 rounded px-2 py-1 mr-4    ${theme === 'dark' ? 'text-white  bg-gray-700' : 'text-black'}`}
         />
         <label htmlFor="endDate" className="mr-2">
-          To:
+          To
         </label>
         <input
           type="date"
@@ -115,11 +107,11 @@ const MainPage = ({ data, theme }: { data: any[]; theme: string }) => {
           value={endDate}
           min="2015-01-01"
           onChange={(e) => setEndDate(e.target.value)}
-          className="border border-gray-300 rounded px-2 py-1"
+          className={`border border-gray-300 rounded px-2 py-1 mr-4   ${theme === 'dark' ? 'text-white  bg-gray-700' : 'text-black'}`}
         />
         <button
           onClick={handleApplyFilter}
-          className="bg-blue-500 text-white px-4 py-1 rounded ml-4"
+          className="bg-blue-500 text-white px-4 py-1 rounded "
         >
           Filter
         </button>
@@ -133,7 +125,7 @@ const MainPage = ({ data, theme }: { data: any[]; theme: string }) => {
               theme === "dark" ? " text-white" : "bg-gray-100 text-black"
             }`}
           >
-            {heading.map((value: any, index: any) => (
+            {heading.map((value: Heading, index: number) => (
               <div
                 className="  text-[12px] flex items-center py-[14px] px-3 text-left  font-medium w-[150px]"
                 key={index}
@@ -148,14 +140,14 @@ const MainPage = ({ data, theme }: { data: any[]; theme: string }) => {
             theme === "dark" ? "text-white " : "text-black"
           } `}
         >
-          {currentRecords.map((data: any, index: number) => (
+          {currentRecords.map((data: Seadata, index: number) => (
             <div
               className={`text-center border-b flex w-max  ${
                 theme === "dark" ? "border-gray-600" : "border-gray-300"
               } rounded-xl`}
               key={index}
             >
-              {heading.map((value: any, index: any) => (
+              {heading.map((value: Heading, index: number) => (
                 <div
                   className="text-[12px] text-left py-2 font-normal   flex border-r px-3  w-[150px] rounded"
                   key={index}

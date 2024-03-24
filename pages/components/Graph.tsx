@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Seadata } from "../lib/definitions";
 import {
   LineChart,
   Line,
@@ -9,7 +10,8 @@ import {
   Legend,
 } from "recharts";
 
-const Graph = ({ jsonData, theme }: { jsonData: any[]; theme: string }) => {
+
+const Graph = ({ jsonData, theme }: { jsonData: Seadata[]; theme: string }) => {
   const [xAxisDataKey, setXAxisDataKey] = useState<string>("Latitude");
   const [yAxisDataKey, setYAxisDataKey] = useState<string>("Air Temperature");
 
@@ -34,6 +36,18 @@ const Graph = ({ jsonData, theme }: { jsonData: any[]; theme: string }) => {
     setYAxisDataKey(option);
   };
 
+  //Formatting date 
+  function formatDate(dateString:string) {
+    const date = new Date(dateString);
+    const day = (date.getDate() < 10 ? '0' : '') + date.getDate();
+    const month = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
+    const year = (date.getFullYear() + '').slice(2);
+    const hours = (date.getHours() % 12 || 12);
+    const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+    return `${day}/${month}/${year} ${hours}:${minutes}${ampm}`;
+  }
+
   const CustomTooltip = ({
     active,
     payload,
@@ -43,15 +57,23 @@ const Graph = ({ jsonData, theme }: { jsonData: any[]; theme: string }) => {
   }) => {
    
     if (active && payload && payload.length) {
-      const xKey = xAxisDataKey;
-      const xValue = payload[0].payload[xAxisDataKey];
-      const yKey = yAxisDataKey;
-      const yValue = payload[0].payload[yAxisDataKey];
+      let xKey = xAxisDataKey;
+      let xValue = payload[0].payload[xAxisDataKey];
+      let yKey = yAxisDataKey;
+      let yValue = payload[0].payload[yAxisDataKey];
+
+      if (xKey === 'Time of Observation') {
+        xValue = formatDate(xValue);
+      }
+      if (xKey === 'Time of Observation') {
+        xKey = 'Observation Time';
+      }
+
 
       return (
         <div className="bg-white border border-gray-500 p-2 rounded-md shadow">
-          <p className="font-semibold text-black">{`${yKey}: ${yValue}`}</p>
-          <p className="font-semibold text-black">{`${xKey}: ${xValue}`}</p>
+          <p className="font-semibold text-sm text-black">{`${yKey}: ${yValue}`}</p>
+          <p className="font-semibold text-sm text-black">{`${xKey}: ${xValue}`}</p>
         </div>
       );
     }

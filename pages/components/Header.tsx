@@ -14,7 +14,7 @@ const Header = ({ onThemeChange, theme }: { onThemeChange: () => void; theme: st
         <div>
           <button
             onClick={onThemeChange}
-            className={`py-2 px-4 rounded ${
+            className={`py-1 px-3 rounded ${
               theme === 'dark' ? 'bg-yellow-500 text-white' : 'bg-gray-300 text-black'
             }`}
           >

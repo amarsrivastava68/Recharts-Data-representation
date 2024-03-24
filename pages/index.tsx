@@ -25,7 +25,7 @@ const Index = ({ data }: { data: [] }) => {
 };
 
 export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "lib", "data.json");
+  const filePath = path.join(process.cwd(), "pages", "lib/data.json");
   const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   return {
     props: {
