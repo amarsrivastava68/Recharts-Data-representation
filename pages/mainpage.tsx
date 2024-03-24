@@ -44,7 +44,7 @@ const MainPage = ({ data, theme }: { data: Seadata[]; theme: string }) => {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const recordsPerPage: number = 15;
-  const [startDate, setStartDate] = useState<string>("2015-01-01");
+  const [startDate, setStartDate] = useState<string>("2015-01-12");
   const [endDate, setEndDate] = useState<string>("2015-01-31");
 
   const indexOfLastRecord: number = currentPage * recordsPerPage;
