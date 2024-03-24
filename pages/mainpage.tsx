@@ -105,7 +105,7 @@ const MainPage = ({ data, theme }: { data: Seadata[]; theme: string }) => {
           type="date"
           id="endDate"
           value={endDate}
-          min="2015-01-01"
+          min="2015-01-12"
           onChange={(e) => setEndDate(e.target.value)}
           className={`border border-gray-300 rounded px-2 py-1 mr-4   ${theme === 'dark' ? 'text-white  bg-gray-700' : 'text-black'}`}
         />
