@@ -5,11 +5,12 @@ import { Heading } from "../lib/definitions";
 
 
 const MainPage = ({ data, theme }: { data: Seadata[]; theme: string }) => {
+  
   const [jsonData, setJsonData] = useState<Seadata[]>([]);
 
   const [filteredData, setFilteredData] = useState<Seadata[]>(jsonData);
 
-  const [heading, setHeading] = useState<Heading[]>([
+  const heading : Heading[] = [
     { TableName: "Identification", HeadingName: "Identification" },
     { TableName: "Latitude", HeadingName: "Latitude" },
     { TableName: "Longitude", HeadingName: "Longitude" },
@@ -40,7 +41,7 @@ const MainPage = ({ data, theme }: { data: Seadata[]; theme: string }) => {
     { TableName: "Past Weather", HeadingName: "Past Weather" },
     { TableName: "Wind Direction", HeadingName: "Wind Direction" },
     { TableName: "Wind Speed", HeadingName: "Wind Speed" },
-  ]);
+  ];
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const recordsPerPage: number = 15;
@@ -97,7 +98,7 @@ const MainPage = ({ data, theme }: { data: Seadata[]; theme: string }) => {
           min="2015-01-12"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          className={`border border-gray-300 rounded px-2 py-1 mr-4    ${theme === 'dark' ? 'text-white  bg-gray-700' : 'text-black'}`}
+          className={`border border-gray-300 rounded px-2 py-1 mr-4  ${theme === 'dark' ? 'text-white  bg-gray-700' : 'text-black'}`}
         />
         <label htmlFor="endDate" className="mr-2">
           To
