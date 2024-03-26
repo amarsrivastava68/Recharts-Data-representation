@@ -76,6 +76,7 @@ const MainPage = ({ data, theme }: { data: Seadata[]; theme: string }) => {
     }
 
     setFilteredData(appliedfilterdata);
+    setCurrentPage(1)
   };
 
   useEffect(() => {
