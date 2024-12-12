@@ -8,7 +8,7 @@ const Header = ({ onThemeChange, theme }: { onThemeChange: () => void; theme: st
       <div className="bg-gray-700 h-16 flex items-center justify-between px-4 mb-4">
         <div className="logo">
           
-          <img src="logo.png" alt="Logo" className="h-10" />
+          {  /* <img src="logo.png" alt="Logo" className="h-10" /> */}
         </div>
         <p className="text-white font-bold">Marinal Analysis</p>
         <div>
